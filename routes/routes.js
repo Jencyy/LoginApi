@@ -16,7 +16,7 @@ routes.post('/login', loginUser)
 routes.get('/principal', authenticateToken(["TopManagement"]), principalController.getAllPrincipals);
 routes.get('/principal', authenticateToken(["TopManagement"]), principalController.getPrincipalById);
 routes.post('/principal', authenticateToken(["TopManagement"]), principalController.addPrincipal);
-routes.put('/principal', authenticateToken(["TopManagement"]), principalController.updatePrincipal);
+routes.put('/principal/:id', authenticateToken(["TopManagement"]), principalController.updatePrincipal);
 routes.delete('/principal/:id', authenticateToken(["TopManagement"])    , principalController.deletePrincipal);
 
 

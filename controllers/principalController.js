@@ -1,5 +1,5 @@
 import PrincipalModel from '../models/Principal.js';
-
+import bcrypt from 'bcrypt'
 // Get all principals
 const getAllPrincipals = async (req, res) => {
     try {

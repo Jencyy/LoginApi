@@ -3,9 +3,9 @@ import bcrypt from 'bcrypt';
 import User from '../models/userModel.js';
 
 const loginUser = async (req, res) => {
-    const { email, password } = req.body;
-
+    
     try {
+        const { email, password } = req.body;
         // Find the user by email
         const user = await User.findOne({ email });
         if (!user) {
@@ -19,7 +19,7 @@ const loginUser = async (req, res) => {
         }
 
         // Generate JWT token
-        const token = jwt.sign({ userId: user._id, name: user.name, role: user.role }, process.env.SECRET_KEY, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id, name: user.name, role: user.role }, "hello", { expiresIn: '1h' });
 
         // Log the token (optional, be cautious in production)
         console.log('Generated JWT token:', token);

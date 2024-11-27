@@ -63,7 +63,6 @@ A RESTful API for managing hierarchical roles (**Admin**, **Principal**, **Teach
    git clone https://github.com/your-username/project.git
    cd project
    npm install
-``
 
 2. Run the server:
 ```bash

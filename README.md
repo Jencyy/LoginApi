@@ -12,37 +12,47 @@ A RESTful API for managing hierarchical roles (**Admin**, **Principal**, **Teach
 
 ---
 
-## 🛠️ Tech Stack
 
-- **Node.js**, **Express.js**, **MongoDB**, **JWT**
+## 🔐 Authentication
+| Method | Endpoint       | Description             |
+|--------|----------------|-------------------------|
+| POST   | `/register`    | ✍️ Register a new user  |
+| POST   | `/login`       | 🔑 Login and get a JWT  |
 
 ---
 
-## 🚀 API Endpoints
+## 🛠️ Role-Based Endpoints
 
-### 🔐 Authentication
-| Method | Endpoint       | Description             |
-|--------|----------------|-------------------------|
-| POST   | `/auth/signup` | ✍️ Register a new user  |
-| POST   | `/auth/login`  | 🔑 Login and get a JWT  |
-
-### 🛠️ Admin
-| Method | Endpoint               | Description          |
-|--------|------------------------|----------------------|
-| GET    | `/admin/principals`    | 👀 View principals   |
-| POST   | `/admin/principals`    | ➕ Add a principal    |
+### 👑 Top Management (Admin)
+| Method | Endpoint               | Description                  |
+|--------|------------------------|------------------------------|
+| GET    | `/principal`           | 👀 View all principals       |
+| GET    | `/principal/:id`       | 👀 View a specific principal |
+| POST   | `/principal`           | ➕ Add a principal            |
+| PUT    | `/principal/:id`       | ✏️ Update a principal         |
+| DELETE | `/principal/:id`       | ❌ Delete a principal         |
 
 ### 🎓 Principal
 | Method | Endpoint               | Description          |
 |--------|------------------------|----------------------|
-| GET    | `/principal/teachers`  | 👀 View teachers     |
-| POST   | `/principal/teachers`  | ➕ Add a teacher      |
+| GET    | `/faculty`             | 👀 View all teachers |
+| POST   | `/faculty`             | ➕ Add a teacher      |
+| PUT    | `/faculty/:id`         | ✏️ Update a teacher   |
+| DELETE | `/faculty/:id`         | ❌ Delete a teacher   |
 
 ### 👩‍🏫 Teacher
-| Method | Endpoint               | Description          |
-|--------|------------------------|----------------------|
-| GET    | `/teacher/students`    | 👀 View students     |
-| POST   | `/teacher/students`    | ➕ Add a student      |
+| Method | Endpoint               | Description           |
+|--------|------------------------|-----------------------|
+| GET    | `/students`            | 👀 View all students  |
+| POST   | `/students`            | ➕ Add a student       |
+| PUT    | `/students/:id`        | ✏️ Update a student    |
+| DELETE | `/students/:id`        | ❌ Delete a student    |
+
+## 🔄 Middleware
+- **`authenticateToken`**: Verifies JWT and ensures access control based on user roles:
+  - `["TopManagement"]` for top-level management tasks.
+  - `["TopManagement", "Principal"]` for principal-related operations.
+  - `["TopManagement", "Principal", "Faculty"]` for student management.
 
 ---
 

@@ -55,7 +55,7 @@ A RESTful API for managing hierarchical roles (**Admin**, **Principal**, **Teach
    npm install
 ``
 
-2.Run the server:
+2. Run the server:
 ```bash
   npm start
 ```
